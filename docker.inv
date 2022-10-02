@@ -1,2 +1,2 @@
 [webserver]
-10.182.0.3 ansible_user=root ansible_root_passwd=Harman@123
+10.182.0.3 ansible_user=root ansible_ssh_passwd=Harman@123
