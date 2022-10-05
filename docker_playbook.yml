@@ -1,7 +1,7 @@
 ---
 - name: Install Docker on slave machine
   hosts: webserver
- become: yes
+  become: yes
   vars:
      dockerceversion: 5:18.09.9~3-0~ubuntu-bionic
      dockercecliversion: 5:18.09.9~3-0~ubuntu-bionic
