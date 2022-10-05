@@ -19,5 +19,5 @@ uptools']
   - name: Install Docker module for python
     pip: 
       name: docker
-  - name: Update apt and install docker-ce 
+  - name: update apt and install docker-ce 
     apt: update_cache=yes name=docker-ce state=latest      
