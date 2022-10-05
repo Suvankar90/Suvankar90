@@ -1,2 +1,2 @@
 [webserver]
-34.125.201.73 ansible_user=all 
+34.125.209.39 ansible_user=all ansible_ssh_pass=Harman@123
