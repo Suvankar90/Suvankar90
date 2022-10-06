@@ -10,7 +10,7 @@
 uptools']    
   - name: Add Docker GPG key
     apt_key:
-      url: https://download.docker.com/linux/ubuntu/grg
+      url: https://download.docker.com/linux/ubuntu/gpg
       state: present
   - name: Add Docker Repository
     apt_repository:
