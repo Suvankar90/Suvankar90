@@ -1,6 +1,5 @@
 ---
-- name: Install Docker on slave machine
-  hosts: webserver
+- hosts: webserver
   become: yes
   vars:
      dockerceversion: 5:18.09.9~3-0~ubuntu-bionic
@@ -21,14 +20,12 @@
     - name: Install Docker packages
       apt:
 #        name: "{{ item }}" 
-         name: ['docker-ce={{ dockerceversion }}','docker-ce-cli={{ dockercecliversion }}', 'containerd.io={{ containerdioversion }}']
-         state: present
-#        with_items:
+        name: ['docker-ce={{ dockerceversion }}','docker-ce-cli={{ dockercecliversion }}', 'containerd.io={{ containerdioversion }}']
+        state: present
+#      with_items:
 #            - docker-ce={{ dockerceversion }}
 #            - docker-ce-cli={{ dockercecliversion }}
 #            - containerd.io={{ containerdioversion }}
 #            - docker-ce
 #            - docker-ce-cli
 #            - containerd.io
-~                                                                                                                                         
-~                               
