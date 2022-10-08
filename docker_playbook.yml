@@ -16,3 +16,5 @@
       recreate: yes
       exposed_ports:
         - 8080
+  - name: Install required system packages
+     apt: name=python-docker state=latest update_cache=yes     
