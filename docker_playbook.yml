@@ -1,23 +1,22 @@
 ---
-- name: Install Docker on slave machine
-  hosts: webserver
+- hosts: webserver
   tasks:
-  - name: Install aptitude and update cache
-    apt: name=aptitude state=latest update_cache=yes force-apt_get=yes
   - name: Install required system packages
-    apt: name={{ item }}  state=latest update_cache=yes
-    loop: [ 'apt-transport-https','ca-certificates','curl','software-properties-common','python3-pip','python-pip','virtualenv','python3-set
-uptools']    
-  - name: Add Docker GPG key
-    apt_key:
-      url: https://download.docker.com/linux/ubuntu/grg
+    apt: name=python-docker state=latest update_cache=yes     
+
+  - name: Install docker.
+    package:
+      name: docker-ce
       state: present
-  - name: Add Docker Repository
-    apt_repository:
-      repo: deb https://download.docker.com/linux/ubuntu boinic stable
-      state: present
-  - name: Install Docker module for python
-    pip: 
+  - name: Start docker service
+    service:
       name: docker
-  - name: Update apt and install docker-ce 
-    apt: update_cache=yes name=docker-ce state=latest 
+      state: started
+  - name: Create a redis container
+    docker_container:
+      name: data1
+      image: ubuntu
+      state: started
+      recreate: yes
+      exposed_ports:
+        - 8080
