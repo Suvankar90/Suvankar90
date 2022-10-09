@@ -5,7 +5,7 @@
 
   - name: Install docker.
     package:
-      name: docker
+      name: docker-ce
       state: present
   - name: Start docker service
     service:
