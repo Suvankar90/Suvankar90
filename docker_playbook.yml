@@ -1,22 +1,22 @@
 ---
 - hosts: webserver
-- name: Add Docker apt key.
-   apt_key:
-     url: https://download.docker.com/linux/ubuntu/gpg
-      id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+  tasks:
+  - name: Install required system packages
+    apt: name=python-docker state=latest update_cache=yes     
+
+  - name: Install docker.
+    package:
+      name: docker-ce
       state: present
-    ignore_errors: true
-    become: true
-
-- name: Add Docker repository.
-     apt_repository:
-        repo: deb [arch=armhf] https://download.docker.com/linux/ubuntu bionic stable
-        state: present
-        update_cache: true
-      become: true
-
- - name: Install Docker.
-      package:
-        name: docker-ce
-        state: present
-      become: true
+  - name: Start docker service
+    service:
+      name: docker
+      state: started
+  - name: Create a redis container
+    docker_container:
+      name: data1
+      image: ubuntu
+      state: started
+      recreate: yes
+      exposed_ports:
+        - 8080
