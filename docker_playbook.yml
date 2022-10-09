@@ -4,8 +4,8 @@
   - name: Install required system packages
     apt: name=python-docker state=latest update_cache=yes     
 
-  - name: Install docker-ce
-      package:
+  - name: Install docker.
+    package:
       name: docker-ce
       state: present
   - name: Start docker service
