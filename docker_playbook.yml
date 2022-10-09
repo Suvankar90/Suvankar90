@@ -1,24 +1,22 @@
 ---
 - hosts: webserver
-  become: yes
-  become_user: root
   tasks:
-  - name: Add Docker GPG key
-    apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+  - name: Install required system packages
+    apt: name=python-docker state=latest update_cache=yes     
 
-  - name: Add Docker APT repository
-    apt_repository:
-      repo: deb [arch=and64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
-
-  - name: Install list of packages
-    apt:
-      name: "{{item}}"
+  - name: Install docker
+    package:
+      name: docker-ce
       state: present
-      update_cache: yes
-    with_items:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - software-properties-common
-      - linux-generic-hwe-18.04
-      - docker-ce
+  - name: Start docker service
+    service:
+      name: docker
+      state: started
+  - name: Create a redis container
+    docker_container:
+      name: data1
+      image: ubuntu
+      state: started
+      recreate: yes
+      exposed_ports:
+        - 8080
