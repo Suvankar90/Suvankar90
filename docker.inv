@@ -1,2 +1,3 @@
 [webserver]
-34.125.237.105 ansible_user=root ansible_ssh_pass=Harman@123
+34.27.50.143 ansible_user=root ansible_ssh_pass=harman@123
+
