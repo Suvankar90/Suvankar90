@@ -1,5 +1,6 @@
 [webserver]
-34.58.30.76 ansible_user=suvankar1994
+34.58.30.76 ansible_user=root
+
 
 
 
